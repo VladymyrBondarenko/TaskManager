@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Server", "TaskManager.Server\TaskManager.Server.csproj", "{5DD65475-458E-49D2-93EF-7CE1C35DDD71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Server", "TaskManager.Server\TaskManager.Server.csproj", "{5DD65475-458E-49D2-93EF-7CE1C35DDD71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Infrastructure", "TaskManager.Infrastructure\TaskManager.Infrastructure.csproj", "{D1E8A0FF-9BB2-4F63-A5AA-822B92FDA7E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Infrastructure", "TaskManager.Infrastructure\TaskManager.Infrastructure.csproj", "{D1E8A0FF-9BB2-4F63-A5AA-822B92FDA7E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Infrastracture.Test", "TaskManager.Infrastracture.Test\TaskManager.Infrastracture.Test.csproj", "{9213F5CE-EC82-4FA7-A319-261C7C66D241}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Infrastracture.Tests", "TaskManager.Infrastracture.Test\TaskManager.Infrastracture.Tests.csproj", "{9213F5CE-EC82-4FA7-A319-261C7C66D241}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
