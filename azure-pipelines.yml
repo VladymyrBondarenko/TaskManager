@@ -15,6 +15,7 @@ variables:
 steps:
 
 - task: DotNetCoreCLI@2
+  displayName: Restore
   inputs:
     command: 'restore'
     feedsToUse: 'select'
@@ -27,17 +28,14 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/*UnitTest/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+- script: dotnet test '**/*UnitTest/*.csproj' --configuration $(buildConfiguration) --logger trx;LogFileName=C:\temp\results
+  displayName: 'Run UnitTest - $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   inputs:
     command: publish
-    publishWebProjects: True
+    publishWebProjects: false
     projects: 'TaskManager.Server/TaskManager.Server.csproj'
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
