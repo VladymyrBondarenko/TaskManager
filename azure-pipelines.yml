@@ -15,30 +15,22 @@ variables:
 steps:
 
 - task: DotNetCoreCLI@2
-  displayName: Restore
   inputs:
-    command: 'restore'
-    feedsToUse: 'select'
-    vstsFeed: 'my-vsts-feed'
-
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: build
-    projects: '**/*.csproj'
+    command: test
+    projects: '**/*UnitTest/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- script: dotnet test '**/TaskManager.Infrastructure.UnitTest/TaskManager.Infrastructure.UnitTest.csproj' --configuration $(buildConfiguration) --logger trx;LogFileName=C:\temp\results
-  displayName: 'Run UnitTest - $(buildConfiguration)'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+  displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   inputs:
     command: publish
     publishWebProjects: false
     projects: 'TaskManager.Server/TaskManager.Server.csproj'
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
-  
-- task: PublishPipelineArtifact@1
-  displayName: 'publish artifacts --configuration $(buildConfiguration)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
