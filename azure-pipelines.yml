@@ -25,3 +25,15 @@ steps:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'publish --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+  inputs:
+    command: publish
+    publishWebProjects: True
+    projects: 'TaskManager.Server/TaskManager.Server.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+  
+- task: PublishPipelineArtifact@1
+  displayName: 'publish artifacts --configuration $(buildConfiguration)'
