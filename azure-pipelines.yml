@@ -11,13 +11,14 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  unitTestProjects: 'TaskManager.Infrastructure.UnitTest/TaskManager.Infrastructure.UnitTest.csproj'
 
 steps:
 
 - task: DotNetCoreCLI@2
   inputs:
     command: test
-    projects: '**/*UnitTest/*.csproj'
+    projects: '$(unitTestProjects)'
     arguments: '--configuration $(buildConfiguration)'
 
 - script: dotnet build --configuration $(buildConfiguration)
