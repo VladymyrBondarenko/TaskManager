@@ -11,18 +11,19 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  unitTestProjects: 'TaskManager.Infrastructure.UnitTest/TaskManager.Infrastructure.UnitTest.csproj'
 
 steps:
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '$(unitTestProjects)'
-    arguments: '--configuration $(buildConfiguration)'
-
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: dotnet test
+  inputs:
+    command: test
+    projects: '**/*UnitTest/*.csproj'
+    arguments: '--no-build --configuration $(buildConfiguration)'
+    publishTestResults: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
