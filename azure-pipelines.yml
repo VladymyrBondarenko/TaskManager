@@ -28,7 +28,7 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- script: dotnet test '**/*UnitTest/*.csproj' --configuration $(buildConfiguration) --logger trx;LogFileName=C:\temp\results
+- script: dotnet test '**/TaskManager.Infrastructure.UnitTest/TaskManager.Infrastructure.UnitTest.csproj' --configuration $(buildConfiguration) --logger trx;LogFileName=C:\temp\results
   displayName: 'Run UnitTest - $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
